@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List</title>
+</head>
+<body>
+    <button onclick="location.href='/push'">생성하기</button>
+  <% if (lists && lists.length) { %>
+    <% lists.forEach(list => { %>
+      <p><%= list.id %>&nbsp;&nbsp;제목  : &nbsp;<%= list.title %>&nbsp;&nbsp;내용: &nbsp;<%= list.content %></p>
+      <p></p>
+      <p></p>
+    <% }); %>
+  <% } else { %>
+    <p>No lists found.</p>
+  <% } %>
+</body>
+</html>
