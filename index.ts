@@ -24,18 +24,24 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.post("/add", async (req: Request, res: Response) => {
-  const { id, title, content } = req.body;
+  const {title, content } = req.body;
   try {
-    const lists = await List.create({ id, title, content});
-    res.json(lists);
+    await List.create({title, content});
+    res.redirect("/")
   } catch (error) {
     console.error("error", error);
     res.status(500).json({ error: "오류가 발생했습니다." });
   }
 });
 
-app.get("/push", (req: Request, res: Response) => {
-  res.render("push");
+app.get("/push", async (req: Request, res: Response) => {
+  try { 
+    const lists = await List.findAll();
+    res.render("push", {lists})
+  } catch (error){
+    console.error("error", error);
+    res.status(500).json({ error: "오류가 발생했습니다." });
+  }
 });
 
 app.listen(port, () => {

@@ -12,6 +12,7 @@ exports.List = List;
 List.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
         allowNull: false,
     },

@@ -33,19 +33,26 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 }));
 app.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, title, content } = req.body;
+    const { title, content } = req.body;
     try {
-        const lists = yield List_1.List.create({ id, title, content });
-        res.json(lists);
+        yield List_1.List.create({ title, content });
+        res.redirect("/");
     }
     catch (error) {
         console.error("error", error);
         res.status(500).json({ error: "오류가 발생했습니다." });
     }
 }));
-app.get("/push", (req, res) => {
-    res.render("push");
-});
+app.get("/push", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const lists = yield List_1.List.findAll();
+        res.render("push", { lists });
+    }
+    catch (error) {
+        console.error("error", error);
+        res.status(500).json({ error: "오류가 발생했습니다." });
+    }
+}));
 app.listen(port, () => {
     console.log("open server port" + port);
 });

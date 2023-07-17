@@ -8,8 +8,7 @@
   <% if (lists && lists.length) { %>
     <% lists.forEach(list => { %>
       <p><%= list.id %>&nbsp;&nbsp;제목  : &nbsp;<%= list.title %>&nbsp;&nbsp;내용: &nbsp;<%= list.content %></p>
-      <p></p>
-      <p></p>
+      <button>수정</button><button>삭제</button>
     <% }); %>
   <% } else { %>
     <p>No lists found.</p>
