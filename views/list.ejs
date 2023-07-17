@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoList</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <div id="addListUpWrap">
+        <div id="addListUpBox">
+            <div id="todoAddBox">
+                <p>오늘 할 일</p>
+                <form method="post" action="/add">
+                    <input type="text" name="title" placeholder="제목을 입력해 주세요.">
+                    <input type="text" name="content" placeholder="내용을 입력해 주세요.">
+                    <div>
+                        <button type="submit" id="addTodoList">추가</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="todoWrap">
+        <div id="todoBox">
+            <div id="todayDate">
+                <div id="Month">
+                    <p></p>
+                </div>
+                <div id="dayYear"></div>
+                <div id="day"></div>
+            </div>
+            <div id="listBox">
+                <% for(let i=0; i < data.length; i++) { %>
+                    <div>
+                        <p>
+                            <%=data[i].id%>
+                        </p>
+                        <p>
+                            <%=data[i].title%>
+                        </p>
+                        <p>
+                            <%=data[i].content%>
+                        </p>
+                        <button class="del" onclick='location.href="/del/<%=data[i].id%>"'>삭제</button>
+                        <button class="modi" onclick='location.href="/modify/<%=data[i].id%>"'>수정</button>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <button id="addBtn">글 쓰기</button>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        let addBtn = document.getElementById("addBtn");
+        let addListUpWrap = document.getElementById("addListUpWrap");
+        let todoAddBox = document.getElementById("todoAddBox");
+        let addListUpBox = document.getElementById("addListUpBox")
+
+        addBtn.addEventListener('click', function (event) {
+            addListUpWrap.style.visibility = "visible";
+            addListUpBox.style.width = "600px";
+        });
+
+        // deleteFn = (dataList) => {
+        //     const request = new XMLHttpRequest();
+        //     request.open("delete", "/del/" + dataList);
+        //     request.send();
+        // }
+    }
+</script>
+
+</html>
