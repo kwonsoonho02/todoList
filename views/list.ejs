@@ -7,7 +7,7 @@
     <button onclick="location.href='/push'">생성하기</button>
   <% if (lists && lists.length) { %>
     <% lists.forEach(list => { %>
-      <p>&nbsp;제목  : &nbsp;<%= list.title %>&nbsp;&nbsp;내용: &nbsp;<%= list.content %></p>
+      <p>&nbsp;&nbsp;제목  : &nbsp;<%= list.title %>&nbsp;&nbsp;내용: &nbsp;<%= list.content %></p>
       <button onclick="location.href='/modify/<%=list.id%>'">수정</button><button onclick="location.href='/delete/<%=list.id%>'">삭제</button>
     <% }); %>
   <% } else { %>

@@ -32,7 +32,9 @@ List.init(
     }
 )
 
-sequelize.sync()
+sequelize.sync({
+    alter: true
+})
   .then(() => {
     console.log('데이터베이스와 모델 동기화 완료');
   })

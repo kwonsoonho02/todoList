@@ -30,7 +30,9 @@ List.init({
     modelName: 'List',
     tableName: 'lists',
 });
-database_1.default.sync()
+database_1.default.sync({
+    alter: true
+})
     .then(() => {
     console.log('데이터베이스와 모델 동기화 완료');
 })
