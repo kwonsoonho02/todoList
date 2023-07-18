@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mariadb": "^3.2.0",
+    "npm": "^9.8.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.4.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec ts-node index.js"
+  },
+  "name": "todolist",
+  "description": "에이블 스토어 todoList",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
