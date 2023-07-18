@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import { List } from "./src/models/List";
 import bodyParser from "body-parser";
 import path, { dirname } from "path";
+import { title } from "process";
 
 const app : Express = express();
 const port = 5011;
@@ -79,8 +80,15 @@ app.get("/delete/:id", async(req: Request, res: Response) => {
 })
 
 app.get("/modify/:id",  async (req : Request, res : Response) => {
-  let idIndex = req.params.id;
-  res.render("modify", {paramsId: idIndex });
+  let id = req.params.id;
+  const lists = await List.findOne(
+    {
+      where : { id : id }
+    }
+  ).then((list) => {
+    return list
+  })
+  res.render("modify", {paramsId: id, lists : lists });
 })
 
 app.listen(port, () => {

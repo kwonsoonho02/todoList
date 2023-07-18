@@ -81,8 +81,13 @@ app.get("/delete/:id", (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 }));
 app.get("/modify/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let idIndex = req.params.id;
-    res.render("modify", { paramsId: idIndex });
+    let id = req.params.id;
+    const lists = yield List_1.List.findOne({
+        where: { id: id }
+    }).then((list) => {
+        return list;
+    });
+    res.render("modify", { paramsId: id, lists: lists });
 }));
 app.listen(port, () => {
     console.log("open server port" + port);
