@@ -35,7 +35,9 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 app.post("/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, content } = req.body;
     try {
-        yield List_1.List.create({ title, content });
+        yield List_1.List.create({ title, content }).then((list) => {
+            console.log("아이디 자동 입력 : ", list.id);
+        });
         res.redirect("/");
     }
     catch (error) {
@@ -52,6 +54,35 @@ app.get("/push", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         console.error("error", error);
         res.status(500).json({ error: "오류가 발생했습니다." });
     }
+}));
+app.post("/patch/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { title, content } = req.body;
+    let id = req.params.id;
+    try {
+        yield List_1.List.update({ title: title, content: content }, {
+            where: { id: id }
+        });
+        res.redirect("/");
+    }
+    catch (error) {
+        console.log("error", error);
+    }
+}));
+app.get("/delete/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let id = req.params.id;
+    try {
+        yield List_1.List.destroy({
+            where: { id: id }
+        });
+        res.redirect("/");
+    }
+    catch (error) {
+        console.log("error", error);
+    }
+}));
+app.get("/modify/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let idIndex = req.params.id;
+    res.render("modify", { paramsId: idIndex });
 }));
 app.listen(port, () => {
     console.log("open server port" + port);

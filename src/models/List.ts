@@ -31,3 +31,13 @@ List.init(
         tableName : 'lists',
     }
 )
+
+sequelize.sync()
+  .then(() => {
+    console.log('데이터베이스와 모델 동기화 완료');
+  })
+  .catch((error) => {
+    console.error('동기화 오류:', error);
+  });
+
+  export default List;
