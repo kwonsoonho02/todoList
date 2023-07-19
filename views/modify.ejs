@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form method="post" action="/patch/<%=paramsId%>">
+        <input type="text" name="title" placeholder="수정할 제목을 입력해 주세요." value="<%=lists.title%>">
+        <input type="text" name="content" placeholder="수정할 내용을 입력해 주세요." value="<%=lists.content%>">
+        <div>
+            <button type="submit" id="addTodoList">수정</button>
+        </div>
+    </form>
+</body>
+
+</html>
