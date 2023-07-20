@@ -12,7 +12,6 @@ exports.List = List;
 List.init({
     userid: {
         type: sequelize_1.DataTypes.STRING,
-        primaryKey: true,
         allowNull: false,
     },
     id: {

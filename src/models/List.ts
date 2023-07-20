@@ -11,7 +11,6 @@ List.init(
     {
         userid:{
             type: DataTypes.STRING,
-            primaryKey : true,
             allowNull : false,
         },
         id:{

@@ -32,14 +32,19 @@ app.use((0, cookie_parser_1.default)());
 app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const accessToken = req.cookies.accessToken;
+        const decodedToken = jsonwebtoken_1.default.decode(accessToken);
         if (req.cookies.accessToken === undefined) {
+            res.send("로그인 부탁드려용");
             console.log("토큰 초기화");
         }
         else {
             console.log("아직 있음");
         }
         console.log(accessToken);
-        const lists = yield List_1.List.findAll({});
+        const lists = yield List_1.List.findAll({
+            where: { userid: decodedToken.userid }
+        });
+        console.log(lists);
         res.render("list", { lists });
     }
     catch (error) {
@@ -122,7 +127,9 @@ app.get('/login', (req, res) => {
 app.post("/add", (req, res) => {
     const { title, content } = req.body;
     try {
-        List_1.List.create({ title, content }).then((list) => {
+        const accessToken = req.cookies.accessToken;
+        const userid = accessToken.userid;
+        List_1.List.create({ title, content, userid }).then((list) => {
             console.log("아이디 자동 입력 : ", list.id);
         });
         res.redirect("/");
