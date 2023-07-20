@@ -9,6 +9,11 @@ export class List extends Model{
 
 List.init(
     {
+        userid:{
+            type: DataTypes.STRING,
+            primaryKey : true,
+            allowNull : false,
+        },
         id:{
             type: DataTypes.INTEGER,
             autoIncrement : true,
