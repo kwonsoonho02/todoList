@@ -10,10 +10,6 @@ class List extends sequelize_1.Model {
 }
 exports.List = List;
 List.init({
-    userid: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
@@ -26,6 +22,10 @@ List.init({
     },
     content: {
         type: sequelize_1.DataTypes.STRING(100),
+        allowNull: false,
+    },
+    userid: {
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
 }, {

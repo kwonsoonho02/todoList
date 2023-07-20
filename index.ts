@@ -27,8 +27,7 @@ app.get("/", async (req: Request, res: Response) => {
     
     const accessToken = req.cookies.accessToken;
     const decodedToken = jwt.decode(accessToken) as { userid: string };
-    if(req.cookies.accessToken === undefined){
-      res.send("로그인 부탁드려용")
+    if(req.cookies.accessToken == undefined){
       console.log("토큰 초기화")
     }else{
       console.log("아직 있음")
@@ -138,11 +137,12 @@ app.post("/add", (req: Request, res: Response) => {
   try {
     const accessToken = req.cookies.accessToken;
     const userid : string =  accessToken.userid;
-    List.create(
-      { title, content, userid }
-    ).then((list) => {
-      console.log("아이디 자동 입력 : ", list.id)
-    })
+    // List.create(
+    //   { title, content, userid }
+    // ).then((list) => {
+    //   console.log("아이디 자동 입력 : ", list.id)
+    // })
+    console.log(accessToken.userid)
     res.redirect("/")
   } catch (error) {
     console.error("error", error);

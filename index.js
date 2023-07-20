@@ -33,8 +33,7 @@ app.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const accessToken = req.cookies.accessToken;
         const decodedToken = jsonwebtoken_1.default.decode(accessToken);
-        if (req.cookies.accessToken === undefined) {
-            res.send("로그인 부탁드려용");
+        if (req.cookies.accessToken == undefined) {
             console.log("토큰 초기화");
         }
         else {
@@ -129,9 +128,12 @@ app.post("/add", (req, res) => {
     try {
         const accessToken = req.cookies.accessToken;
         const userid = accessToken.userid;
-        List_1.List.create({ title, content, userid }).then((list) => {
-            console.log("아이디 자동 입력 : ", list.id);
-        });
+        // List.create(
+        //   { title, content, userid }
+        // ).then((list) => {
+        //   console.log("아이디 자동 입력 : ", list.id)
+        // })
+        console.log(accessToken.userid);
         res.redirect("/");
     }
     catch (error) {

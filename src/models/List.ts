@@ -9,10 +9,6 @@ export class List extends Model{
 
 List.init(
     {
-        userid:{
-            type: DataTypes.STRING,
-            allowNull : false,
-        },
         id:{
             type: DataTypes.INTEGER,
             autoIncrement : true,
@@ -25,6 +21,10 @@ List.init(
         },
         content:{
             type: DataTypes.STRING(100),
+            allowNull : false,
+        },
+        userid:{
+            type: DataTypes.STRING,
             allowNull : false,
         },
     },
