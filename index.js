@@ -127,13 +127,11 @@ app.post("/add", (req, res) => {
     const { title, content } = req.body;
     try {
         const accessToken = req.cookies.accessToken;
-        const userid = accessToken.userid;
-        // List.create(
-        //   { title, content, userid }
-        // ).then((list) => {
-        //   console.log("아이디 자동 입력 : ", list.id)
-        // })
-        console.log(accessToken.userid);
+        const userid = jsonwebtoken_1.default.verify(accessToken, process.env.REFRESH_SECRET_KEY || "defaultSecretKey");
+        List_1.List.create({ title, content, userid }).then((list) => {
+            console.log("아이디 자동 입력 : ", list.id);
+        });
+        console.log(accessToken);
         res.redirect("/");
     }
     catch (error) {

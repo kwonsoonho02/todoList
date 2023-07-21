@@ -136,13 +136,13 @@ app.post("/add", (req: Request, res: Response) => {
   const { title, content } = req.body;
   try {
     const accessToken = req.cookies.accessToken;
-    const userid : string =  accessToken.userid;
-    // List.create(
-    //   { title, content, userid }
-    // ).then((list) => {
-    //   console.log("아이디 자동 입력 : ", list.id)
-    // })
-    console.log(accessToken.userid)
+    const userid = jwt.verify(accessToken, process.env.REFRESH_SECRET_KEY || "defaultSecretKey") as { userid: string }
+    List.create(
+      { title, content, userid }
+    ).then((list) => {
+      console.log("아이디 자동 입력 : ", list.id)
+    })
+    console.log(accessToken)
     res.redirect("/")
   } catch (error) {
     console.error("error", error);
